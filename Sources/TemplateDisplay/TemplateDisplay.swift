@@ -18,7 +18,11 @@ public struct TemplateDisplay {
     
     let response: RouterResponse
     
-    func show(withPathString path: String, context: [String: String]) {
+    public init(response: RouterResponse) {
+        self.response = response
+    }
+    
+    public func show(withPathString path: String, context: [String: String]) {
         guard let templateFile = try? File(path: path),
             let templateString = try? String(data: templateFile.readAllBytes()),
             let template = try? Template(string: templateString),
