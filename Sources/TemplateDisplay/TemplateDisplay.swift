@@ -27,7 +27,7 @@ struct TemplateDisplay {
         }
         
         do {
-            Log.debug("sending webpage: \(filePath)")
+            Log.debug("sending webpage: \(path)")
             try response.send(body.string)
         }
             
