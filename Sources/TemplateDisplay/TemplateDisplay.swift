@@ -14,7 +14,7 @@ import LoggerAPI
 import Mustache
 import File
 
-struct TemplateDisplay {
+public struct TemplateDisplay {
     
     let response: RouterResponse
     
