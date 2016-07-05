@@ -23,7 +23,7 @@ struct TemplateDisplay {
             let templateString = try? String(data: templateFile.readAllBytes()),
             let template = try? Template(string: templateString),
             let body = try? template.render(context: Context(box: Box(dictionary: context))) else {
-                Log.error("Failed to parse template")
+                return Log.error("Failed to parse template")
         }
         
         do {
