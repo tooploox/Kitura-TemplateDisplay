@@ -31,19 +31,29 @@ public struct TemplateDisplay {
             return Log.error("Failed to create url")
 
         }
+        Log.info("\(url)")
         
         guard let templateFile = NSData(contentsOf: url) else {
             return Log.error("Failed to create data")
         }
-        let templateString = String(data: templateFile, encoding: NSUTF8StringEncoding)?
+        Log.info("\(templateFile)")
+
+        guard let templateString = String(data: templateFile, encoding: NSUTF8StringEncoding) else {
+            return Log.error("Failed to create string")
+        }
+        Log.info("\(templateString)")
+
         
         guard let template = try? Template(string: templateString) else {
             return Log.error("Failed to parse template")
         }
+        Log.info("\(template)")
+
     
         guard let body = try? template.render(context: Context(box: Box(dictionary: context))) else {
             return Log.error("Failed to render template")
         }
+        Log.info("\(body)")
 
 
         
