@@ -32,7 +32,9 @@ public struct TemplateDisplay {
 
         }
         
-        let templateFile = NSData(contentsOf: url)
+        guard let templateFile = NSData(contentsOf: url) else {
+            return Log.error("Failed to create data")
+        }
         let templateString = String(data: templateFile, encoding: NSUTF8StringEncoding)?
         
         guard let template = try? Template(string: templateString) else {
