@@ -24,7 +24,7 @@ public struct TemplateDisplay {
     public func show(withPathString path: String, context: [String: String]) {
         guard let url = NSURL(string: path),
             let templateFile = try NSData(contentsOf: url),
-            let templateString = try? String(data: templateFile.readAllBytes()),
+            let templateString = try? String(data: templateFile),
             let template = try? Template(string: templateString),
             let body = try? template.render(context: Context(box: Box(dictionary: context))) else {
                 return Log.error("Failed to parse template")
