@@ -33,7 +33,7 @@ public struct TemplateDisplay {
         }
         
         let templateFile = NSData(contentsOf: url)
-        let templateString = String(data: templateFile, encoding: NSUTF8StringEncoding)
+        let templateString = String(data: templateFile, encoding: NSUTF8StringEncoding)?
         
         guard let template = try? Template(string: templateString) else {
             return Log.error("Failed to parse template")
