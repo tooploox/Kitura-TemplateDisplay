@@ -12,7 +12,6 @@ import HeliumLogger
 import LoggerAPI
 
 import Mustache
-import File
 
 public struct TemplateDisplay {
     
@@ -23,7 +22,7 @@ public struct TemplateDisplay {
     }
     
     public func show(withPathString path: String, context: [String: String]) {
-        guard let templateFile = try? File(path: path),
+        guard let templateFile = try? NSData(contentsOfURL: NSURL(string: path)),
             let templateString = try? String(data: templateFile.readAllBytes()),
             let template = try? Template(string: templateString),
             let body = try? template.render(context: Context(box: Box(dictionary: context))) else {
