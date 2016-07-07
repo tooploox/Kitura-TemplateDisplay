@@ -26,7 +26,7 @@ public struct TemplateDisplay {
         guard let templateData = NSData(contentsOfFile: path),
             let templateString = String(data: templateData, encoding: NSUTF8StringEncoding),
             let template = try? Template(string: templateString),
-            let body = try? template.render(context: Context(box: Box(dictionary: message.context))) else {
+            let body = try? template.render(context: Context(box: Box(dictionary: context))) else {
                 return Log.error("Failed to parse template")
         }
 
