@@ -12,5 +12,5 @@ Add this package to your `Package.swift`.
 import Kitura
 import TemplateDisplay
 
-let renderedString = MustacheTemplateDisplay().render(filePathString, context: yourContext)
+let renderedString = try! MustacheTemplateDisplay().render(filePathString, context: yourContext)
 ```
