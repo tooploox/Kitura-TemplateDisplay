@@ -28,6 +28,6 @@ public struct MustacheTemplateDisplay: TemplateEngine {
                 Log.error("Failed to parse template")
                 throw NSError()
         }
-        return body
+        return body.string
     }
 }
