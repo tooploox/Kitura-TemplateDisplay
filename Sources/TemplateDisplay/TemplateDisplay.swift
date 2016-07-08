@@ -24,7 +24,7 @@ public struct MustacheTemplateDisplay: TemplateEngine {
     }
     
     public static func render(filePath: String, context: [String: Any]) throws -> String {
-        guard let templateData = NSData(contentsOfFile: path),
+        guard let templateData = NSData(contentsOfFile: filePath),
             let templateString = String(data: templateData, encoding: NSUTF8StringEncoding),
             let template = try? Template(string: templateString),
             let body = try? template.render(context: Context(box: Box(dictionary: context))) else {
