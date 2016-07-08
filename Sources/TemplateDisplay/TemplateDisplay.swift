@@ -23,7 +23,8 @@ public struct MustacheTemplateDisplay: TemplateEngine {
         guard let templateData = NSData(contentsOfFile: filePath),
             let templateString = String(data: templateData, encoding: NSUTF8StringEncoding),
             let template = try? Template(string: templateString),
-            let body = try? template.render(context: Context(box: Box(dictionary: context))) else {
+            let boxContext = context as [String: String],
+            let body = try? template.render(context: Context(box: Box(dictionary: boxContext))) else {
                 Log.error("Failed to parse template")
                 throw NSError()
         }
