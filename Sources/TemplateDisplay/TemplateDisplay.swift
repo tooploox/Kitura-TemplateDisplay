@@ -13,10 +13,6 @@ import LoggerAPI
 
 import Mustache
 
-public enum TemplateDisplayError: ErrorType {
-    case Parse
-}
-
 public struct MustacheTemplateDisplay: TemplateEngine {
     
     var fileExtenstion: String {
@@ -29,7 +25,7 @@ public struct MustacheTemplateDisplay: TemplateEngine {
             let template = try? Template(string: templateString),
             let body = try? template.render(context: Context(box: Box(dictionary: context))) else {
                 Log.error("Failed to parse template")
-                throw TemplateDisplayError.Parse
+                throw NSError()
         }
         return body
     }
