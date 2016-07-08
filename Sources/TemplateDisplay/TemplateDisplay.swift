@@ -20,6 +20,8 @@ public struct MustacheTemplateDisplay: TemplateEngine {
         return "mustache"
     }
     
+    public init() { }
+    
     public func render(filePath: String, context: [String: Any]) throws -> String {
         guard let templateData = NSData(contentsOfFile: filePath),
             let templateString = String(data: templateData, encoding: NSUTF8StringEncoding),
