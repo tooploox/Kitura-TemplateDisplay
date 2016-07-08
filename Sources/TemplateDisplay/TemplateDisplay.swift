@@ -13,30 +13,24 @@ import LoggerAPI
 
 import Mustache
 
-public struct TemplateDisplay {
+public enum TemplateDisplayError: ErrorType {
+    case Parse
+}
+
+public struct MustacheTemplateDisplay: TemplateEngine {
     
-    let response: RouterResponse
-    
-    public init(response: RouterResponse) {
-        self.response = response
+    var fileExtenstion: String {
+        return "mustache"
     }
     
-    public func show(withPathString path: String, context: [String: String]) {
-            
+    public static func render(filePath: String, context: [String: Any]) throws -> String {
         guard let templateData = NSData(contentsOfFile: path),
             let templateString = String(data: templateData, encoding: NSUTF8StringEncoding),
             let template = try? Template(string: templateString),
             let body = try? template.render(context: Context(box: Box(dictionary: context))) else {
-                return Log.error("Failed to parse template")
+                Log.error("Failed to parse template")
+                throw TemplateDisplayError.Parse
         }
-
-        do {
-            Log.debug("sending webpage: \(path)")
-            try response.send(body.string)
-        }
-            
-        catch {
-            Log.error("Failed to send response \(error)")
-        }
+        return body
     }
 }
