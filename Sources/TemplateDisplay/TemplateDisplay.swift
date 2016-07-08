@@ -8,6 +8,7 @@
 
 import Foundation
 import Kitura
+import KituraTemplateEngine
 import HeliumLogger
 import LoggerAPI
 
