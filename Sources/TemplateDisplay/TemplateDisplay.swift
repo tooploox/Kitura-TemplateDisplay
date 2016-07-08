@@ -16,7 +16,7 @@ import Mustache
 
 public struct MustacheTemplateDisplay: TemplateEngine {
     
-    var fileExtenstion: String {
+    var fileExtension: String {
         return "mustache"
     }
     
