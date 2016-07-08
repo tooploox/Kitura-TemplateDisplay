@@ -22,6 +22,16 @@ public struct MustacheTemplateDisplay: TemplateEngine {
     
     public init() { }
     
+    public func render(filePath: String, context: [String: String]) throws -> String {
+        var anyDict = [String: Any]()
+        context.forEach { key, value in
+            if let v = value as? Any {
+                return anyDict[key] = v
+            }
+        }
+        return try render(filePath: filePath, context: anyDict)
+    }
+    
     public func render(filePath: String, context: [String: Any]) throws -> String {
         guard let templateData = NSData(contentsOfFile: filePath),
             let templateString = String(data: templateData, encoding: NSUTF8StringEncoding),
